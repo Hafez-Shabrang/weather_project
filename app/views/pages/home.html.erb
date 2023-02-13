@@ -1,0 +1,37 @@
+<div class="row justify-content-center my-4">
+  <div class="col-md-12">
+    <%= form_with(scope: :search, method: :get, url: pages_search_path) do |f| %>
+      <%= f.text_field :city, class: "form-control", id: "exampleFormControlInput1", placeholder: "Enter your city ..." %>
+      <div class="text-center">
+        <%#= f.submit "Search", class: "btn btn-success my-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if @weather %>
+  <div class="row justify-content-center my-4">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <% if @temp > 5 %>
+            <%= image_tag "sun.png", width: 80, height: 80, class: "my-4" %>
+          <% elsif @temp > 5 and @temp < 11 %>
+            <%= image_tag "cloudy.png", width: 80, height: 80, class: "my-4" %>
+          <% elsif @temp > 1 and @temp < 4 %>
+            <%= image_tag "raining.png", width: 80, height: 80, class: "my-4" %>
+          <% elsif @temp < 0%>
+            <%= image_tag "snow.png", width: 80, height: 80, class: "my-4" %>
+          <% end %>
+          <hr>
+          <h6 class="py-2">Country: <span class="text-info"><%= @country %></span></h6>
+          <h6 class="py-2">City: <span class="text-info"><%= @city %></span></h6>
+          <h6 class="py-2">Temperature: <span class="text-info"><%= @temp %> <sup>o</sup>C</span></h6>
+          <h6 class="py-2">Feels Like: <span class="text-info"><%= @feels %> <sup>o</sup>C</span></h6>
+          <h6 class="py-2">Humidity: <span class="text-info"><%= @hum %></span></h6>
+          <h6 class="py-2">Timezone: <span class="text-info float-left"><%= @zone %></span></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
